@@ -2,6 +2,7 @@
 #include <vector>
 #include <tuple>
 #include <algorithm>
+#include <cctype>
 
 using namespace std;
 
@@ -19,9 +20,9 @@ int main(int argc, char **argv) {
     for (size_t l = 0; l < line_count; ++l) {
         char token = '\0';
         while (cin.get(token) && token != '\n') {
-            if (token >= 'a' && token <= 'z')  token = toupper(token);
-            else if (token < 'A' || token > 'Z') continue;
+            if (!isalpha(token)) continue;
 
+            if (islower(token))  token = toupper(token);
             get<1>(appear_times[token - 'A'])++;
         }
     }
